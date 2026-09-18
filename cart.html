@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Food Express</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <header class="header">
+    <a href="index.html" class="logo"><div class="logo-icon">🍔</div>Food <span>Express</span></a>
+    <nav class="nav" id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="index.html#menuSection">Menu</a>
+      <a href="orders.html" id="ordersLink" style="display:none;">Orders</a>
+      <a href="profile.html" id="profileLink" style="display:none;">Profile</a>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-btn" style="background:var(--primary-light);">🛒<span class="cart-count" id="cartCount" style="display:none;">0</span></a>
+      <a href="login.html" class="btn btn-outline btn-small" id="loginBtn">Login</a>
+      <a href="register.html" class="btn btn-primary btn-small" id="registerBtn">Sign Up</a>
+      <button class="btn btn-outline btn-small" id="logoutBtn" style="display:none;" onclick="logoutUser()">Logout</button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>Your Cart 🛒</h2>
+        <p>Review your items and checkout</p>
+      </div>
+      <button class="btn btn-outline btn-small" onclick="clearCart()" id="clearCartBtn">Clear Cart</button>
+    </div>
+
+    <div class="cart-layout">
+      <div class="cart-items" id="cartContainer">
+        <!-- Cart items injected -->
+      </div>
+
+      <div class="cart-summary" id="checkoutSection" style="display:none;">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+        <div class="summary-row"><span>Delivery Fee</span><span id="deliveryFee">₹40</span></div>
+        <div class="summary-row total"><span>Total</span><span id="total">₹0</span></div>
+
+        <div class="checkout-box">
+          <h4 style="margin-bottom:12px;">Delivery Details</h4>
+          <div class="form-group">
+            <label>Delivery Address</label>
+            <textarea id="deliveryAddress" placeholder="House No, Street, Area, City" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="deliveryPhone" placeholder="9876543210" required>
+          </div>
+
+          <h4 style="margin:16px 0 8px;">Payment Method</h4>
+          <div class="payment-options">
+            <label class="payment-option active">
+              <input type="radio" name="payment" value="Cash on Delivery" checked>
+              <span>💵 Cash on Delivery</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="UPI">
+              <span>📱 UPI Payment</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="Card">
+              <span>💳 Demo Card Payment</span>
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-full" style="height:52px; margin-top:20px; font-size:1.05rem;" onclick="placeOrder()">
+            Place Order 🎉
+          </button>
+          <p style="font-size:0.78rem; color:var(--gray); text-align:center; margin-top:10px;">Demo checkout only. No real payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Success Modal -->
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal">
+      <div class="big-icon">🎉</div>
+      <h2 style="font-size:1.6rem; font-weight:800; margin-bottom:8px;">Order Placed Successfully!</h2>
+      <p style="color:var(--gray); margin-bottom:20px;">Your delicious food is being prepared</p>
+      <div style="background:var(--light); padding:16px; border-radius:12px; text-align:left; margin-bottom:20px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="color:var(--gray);">Order ID:</span><b id="successOrderId" style="font-family:monospace;">FE10001</b></div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span style="color:var(--gray);">Total Amount:</span><b id="successOrderTotal">₹0</b></div>
+        <div style="display:flex; justify-content:space-between;"><span style="color:var(--gray);">Estimated Delivery:</span><b>30-45 minutes</b></div>
+      </div>
+      <a href="orders.html" class="btn btn-primary btn-full" style="height:48px;">View Orders</a>
+      <a href="index.html" class="btn btn-outline btn-full" style="height:48px; margin-top:10px;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
